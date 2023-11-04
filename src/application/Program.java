@@ -8,13 +8,9 @@ public class Program {
 
     public static void main(String[] args) {
         String path = "C:\\Users\\Pr Elisafá\\OneDrive\\Área de Trabalho\\in.txt";
-        FileReader fr = null;
-        BufferedReader br = null;
+      
 
-        try {
-            fr = new FileReader(path);
-            br = new BufferedReader(fr);
-
+        try (BufferedReader br = new BufferedReader(new FileReader(path))){
             String line = br.readLine();
 
             while (line != null) {
@@ -23,17 +19,6 @@ public class Program {
             }
         } catch (IOException e) {
             System.out.println("Erro: " + e.getMessage());
-        } finally {
-            try {
-                if (fr != null) {
-                    fr.close();
-                }
-                if (br != null) {
-                    br.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
     }
 }
